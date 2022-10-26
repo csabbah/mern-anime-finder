@@ -40,9 +40,17 @@ const Home = () => {
         setButtons(Array.from(Array(response.meta.totalPage).keys()));
       })
       .catch((err) => console.error(err));
+
+    return setSubmitted(false);
   };
 
-  console.log(data);
+  const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (submitted) {
+      searchAnime();
+    }
+  });
 
   return (
     <div className="outer-wrapper">
@@ -53,7 +61,7 @@ const Home = () => {
           placeholder="Demon Slayer, MHA..."
         ></input>
         <div className="control-inner">
-          <button onClick={() => searchAnime()}>Submit</button>
+          <button onClick={() => setSubmitted(true)}>Search</button>
           {data && data.data.length > 1 && (
             <>
               <button
@@ -68,7 +76,7 @@ const Home = () => {
               <select
                 onChange={(e) => {
                   setDataPerPage(e.target.value);
-                  searchAnime(activePage);
+                  setSubmitted(true);
                 }}
                 id="dropdown"
               >
@@ -138,7 +146,13 @@ const Home = () => {
       </ul>
       <div className="pages-wrapper">
         {data && data.data.length > 1 && (
-          <button className={`${activePage == 1 ? "activePage" : ""}`}>
+          <button
+            onClick={() => {
+              setActivePage(activePage - 1);
+              setSubmitted(true);
+            }}
+            className={`${activePage == 1 ? "activePage" : ""}`}
+          >
             {"<"}
           </button>
         )}
@@ -150,7 +164,7 @@ const Home = () => {
                 className={`${activePage == i + 1 ? "activePage" : ""}`}
                 onClick={() => {
                   setActivePage(i + 1);
-                  searchAnime();
+                  setSubmitted(true);
                 }}
                 key={i + 1}
               >
@@ -160,6 +174,10 @@ const Home = () => {
           })}
         {data && data.data.length > 1 && (
           <button
+            onClick={() => {
+              setActivePage(activePage + 1);
+              setSubmitted(true);
+            }}
             className={`${activePage == buttons.length ? "activePage" : ""}`}
           >
             {">"}
