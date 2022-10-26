@@ -14,21 +14,12 @@ const Home = () => {
   const [data, setData] = useState("");
   const [buttons, setButtons] = useState([]);
   const [activePage, setActivePage] = useState(1);
+  const [dataPerPage, setDataPerPage] = useState(10);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [showMore, setShowMore] = useState([false, null]);
 
-  const searchAnime = (num) => {
-    // If num exists, update the state object
-    if (num) {
-      // If activePage is already equal to the chosen num, then do not execute the fetch again
-      if (activePage == num) {
-        console.log(true);
-        return "";
-      }
-      setActivePage(num);
-    }
-
+  const searchAnime = () => {
     setShowMore([false, null]);
 
     const options = {
@@ -40,7 +31,7 @@ const Home = () => {
     };
 
     fetch(
-      `https://anime-db.p.rapidapi.com/anime?page=${activePage}&size=10&search=${searchTerm}&genres=Fantasy%2CDrama&sortBy=ranking&sortOrder=asc`,
+      `https://anime-db.p.rapidapi.com/anime?page=${activePage}&size=${dataPerPage}&search=${searchTerm}&genres=Fantasy%2CDrama&sortBy=ranking&sortOrder=asc`,
       options
     )
       .then((response) => response.json())
@@ -63,15 +54,33 @@ const Home = () => {
         ></input>
         <div className="control-inner">
           <button onClick={() => searchAnime()}>Submit</button>
-          <button
-            onClick={() => {
-              setData("");
-              document.querySelector(".inputData").value = "";
-              setShowMore([false, null]);
-            }}
-          >
-            Clear
-          </button>
+          {data && data.data.length > 1 && (
+            <>
+              <button
+                onClick={() => {
+                  setData("");
+                  document.querySelector(".inputData").value = "";
+                  setShowMore([false, null]);
+                }}
+              >
+                Clear
+              </button>
+              <select
+                onChange={(e) => {
+                  setDataPerPage(e.target.value);
+                  searchAnime(activePage);
+                }}
+                id="dropdown"
+              >
+                <option value="perPage">Data per page</option>
+                <option value="10">10</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+              </select>
+            </>
+          )}
         </div>
       </div>
 
@@ -128,18 +137,20 @@ const Home = () => {
           : ""}
       </ul>
       <div className="pages-wrapper">
-        {data && (
+        {data && data.data.length > 1 && (
           <button className={`${activePage == 1 ? "activePage" : ""}`}>
             {"<"}
           </button>
         )}
         {data &&
+          data.data.length > 1 &&
           buttons.map((pageNum, i) => {
             return (
               <button
                 className={`${activePage == i + 1 ? "activePage" : ""}`}
                 onClick={() => {
-                  searchAnime(i + 1);
+                  setActivePage(i + 1);
+                  searchAnime();
                 }}
                 key={i + 1}
               >
@@ -147,7 +158,7 @@ const Home = () => {
               </button>
             );
           })}
-        {data && (
+        {data && data.data.length > 1 && (
           <button
             className={`${activePage == buttons.length ? "activePage" : ""}`}
           >

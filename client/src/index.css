@@ -131,6 +131,8 @@ select:-webkit-autofill:focus {
 .main-wrapper {
   padding-top: 20px;
   padding-bottom: 40px;
+  padding-left: 15px;
+  padding-right: 15px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -282,11 +284,25 @@ select:-webkit-autofill:focus {
   margin-right: 0;
 }
 
+select {
+  margin-left: 8px;
+  width: 175px;
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 18px;
+  color: #444;
+  padding: 5px 12px;
+  border-radius: 5px;
+  border: none;
+  appearance: none;
+}
+
 .activePage {
   opacity: 0.5;
   pointer-events: none;
   cursor: not-allowed !important;
 }
+
 @media screen and (max-width: 730px) {
   button:hover {
     transform: scale(1);
@@ -300,5 +316,9 @@ select:-webkit-autofill:focus {
 @media screen and (max-width: 468px) {
   input {
     width: 90vw;
+  }
+
+  .search-controls {
+    margin-left: 0;
   }
 }
