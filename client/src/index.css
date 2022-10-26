@@ -121,6 +121,13 @@ select:-webkit-autofill:focus {
   margin-right: 10px;
 }
 
+.outer-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .main-wrapper {
   padding-top: 20px;
   padding-bottom: 40px;
@@ -138,10 +145,12 @@ select:-webkit-autofill:focus {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
   overflow: hidden;
   height: 400px;
+  transition: 0.2s all ease-in-out;
 }
 
 .card.showDesc {
   height: unset;
+  transition: 0.2s all ease-in-out;
 }
 
 .card:hover {
@@ -200,6 +209,7 @@ select:-webkit-autofill:focus {
   user-select: none;
   padding: 2px 8px;
   border-radius: 100px;
+  background-color: lightgrey;
 }
 
 .Action {
@@ -260,6 +270,23 @@ select:-webkit-autofill:focus {
   background-color: lightgrey;
 }
 
+.pages-wrapper {
+  margin-bottom: 30px;
+}
+
+.pages-wrapper button {
+  margin-right: 8px;
+}
+
+.pages-wrapper button:last-child {
+  margin-right: 0;
+}
+
+.activePage {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed !important;
+}
 @media screen and (max-width: 730px) {
   button:hover {
     transform: scale(1);

@@ -12,10 +12,23 @@ const Home = () => {
   // console.log("User data:", userData);
 
   const [data, setData] = useState("");
+  const [buttons, setButtons] = useState([]);
+  const [activePage, setActivePage] = useState(1);
+
   const [searchTerm, setSearchTerm] = useState("");
   const [showMore, setShowMore] = useState([false, null]);
 
-  const searchAnime = () => {
+  const searchAnime = (num) => {
+    // If num exists, update the state object
+    if (num) {
+      // If activePage is already equal to the chosen num, then do not execute the fetch again
+      if (activePage == num) {
+        console.log(true);
+        return "";
+      }
+      setActivePage(num);
+    }
+
     setShowMore([false, null]);
 
     const options = {
@@ -27,16 +40,21 @@ const Home = () => {
     };
 
     fetch(
-      `https://anime-db.p.rapidapi.com/anime?page=1&size=10&search=${searchTerm}&genres=Fantasy%2CDrama&sortBy=ranking&sortOrder=asc`,
+      `https://anime-db.p.rapidapi.com/anime?page=${activePage}&size=10&search=${searchTerm}&genres=Fantasy%2CDrama&sortBy=ranking&sortOrder=asc`,
       options
     )
       .then((response) => response.json())
-      .then((response) => setData(response))
+      .then((response) => {
+        setData(response);
+        setButtons(Array.from(Array(response.meta.totalPage).keys()));
+      })
       .catch((err) => console.error(err));
   };
 
+  console.log(data);
+
   return (
-    <div>
+    <div className="outer-wrapper">
       <div className="search-controls">
         <input
           className="inputData"
@@ -67,7 +85,11 @@ const Home = () => {
                   }`}
                   key={i}
                 >
-                  <img className="image" src={item.image}></img>
+                  <img
+                    className="image"
+                    src={item.image}
+                    alt={item.alternativeTitles[0]}
+                  ></img>
                   <div className="card-wrapper">
                     <h5>{item.alternativeTitles[0].slice(0, 25)}...</h5>
                     <div className="genre-wrapper">
@@ -105,6 +127,34 @@ const Home = () => {
             })
           : ""}
       </ul>
+      <div className="pages-wrapper">
+        {data && (
+          <button className={`${activePage == 1 ? "activePage" : ""}`}>
+            {"<"}
+          </button>
+        )}
+        {data &&
+          buttons.map((pageNum, i) => {
+            return (
+              <button
+                className={`${activePage == i + 1 ? "activePage" : ""}`}
+                onClick={() => {
+                  searchAnime(i + 1);
+                }}
+                key={i + 1}
+              >
+                {pageNum + 1}
+              </button>
+            );
+          })}
+        {data && (
+          <button
+            className={`${activePage == buttons.length ? "activePage" : ""}`}
+          >
+            {">"}
+          </button>
+        )}
+      </div>
     </div>
   );
 };
