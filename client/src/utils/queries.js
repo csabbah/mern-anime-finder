@@ -6,10 +6,33 @@ export const GET_ME = gql`
       _id
       username
       email
-      notes {
+      savedAnime {
         _id
-        text
+        genres
+        image
+        link
+        ranking
+        title
+        episodes
+        status
+        synopsis
       }
+    }
+  }
+`;
+
+export const GET_ANIME = gql`
+  {
+    savedAnime {
+      _id
+      genres
+      image
+      link
+      ranking
+      title
+      episodes
+      status
+      synopsis
     }
   }
 `;

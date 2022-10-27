@@ -152,6 +152,7 @@ select:-webkit-autofill:focus {
 
 .card.showDesc {
   height: unset;
+  padding-bottom: 20px;
   transition: 0.2s all ease-in-out;
 }
 
@@ -189,8 +190,6 @@ select:-webkit-autofill:focus {
 }
 
 .card-wrapper a {
-  margin-top: 10px;
-  margin-bottom: 15px;
   width: 65px;
   text-decoration: underline;
 }
@@ -211,7 +210,7 @@ select:-webkit-autofill:focus {
   user-select: none;
   padding: 2px 8px;
   border-radius: 100px;
-  background-color: lightgrey;
+  background-color: rgb(227, 227, 227);
 }
 
 .Action {
@@ -219,7 +218,7 @@ select:-webkit-autofill:focus {
 }
 
 .Fantasy {
-  background-color: rgb(250, 189, 49);
+  background-color: rgb(250, 230, 49);
 }
 
 .Adventure {
@@ -235,7 +234,7 @@ select:-webkit-autofill:focus {
 }
 
 .Drama {
-  background-color: rgb(255, 255, 119);
+  background-color: rgb(255, 196, 0);
 }
 
 .Comedy {
@@ -265,13 +264,27 @@ select:-webkit-autofill:focus {
 }
 
 .Ecchi {
-  background-color: antiquewhite;
+  background-color: rgb(248, 217, 177);
 }
 
-.Horror {
-  background-color: lightgrey;
+.interaction-wrapper {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+.interaction-wrapper a {
+  margin-right: 5px;
 }
 
+.save-icon {
+  color: unset;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.save-icon:hover {
+  color: rgb(0, 119, 255);
+}
 .pages-wrapper {
   margin-bottom: 40px;
 }

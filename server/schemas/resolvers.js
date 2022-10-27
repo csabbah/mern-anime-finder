@@ -1,4 +1,4 @@
-const { User, Note } = require("../models");
+const { User, savedAnime } = require("../models");
 
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
@@ -9,15 +9,15 @@ const resolvers = {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select("-__v -password")
-          .populate("notes");
+          .populate("savedAnime");
 
         return userData;
       }
 
       throw new AuthenticationError("Not logged in");
     },
-    notes: async (parent, args) => {
-      return Note.find();
+    savedAnime: async (parent, args) => {
+      return savedAnime.find();
     },
   },
   Mutation: {
@@ -45,33 +45,23 @@ const resolvers = {
       return { token, user };
     },
 
-    addNote: async (parent, { noteToSave }) => {
-      const note = await Note.create(noteToSave);
-
+    addAnime: async (parent, { animeToSave }) => {
+      const anime = await savedAnime.create({ animeToSave });
       const updateUserArr = await User.findOneAndUpdate(
-        { _id: noteToSave.userId },
-        { $addToSet: { notes: note } },
+        { _id: animeToSave.userId },
+        { $addToSet: { savedAnime: anime } },
         { new: true }
-      ).populate("notes");
-
+      ).populate("savedAnime");
       return updateUserArr;
     },
 
-    removeNote: async (parent, { Id, userId }) => {
+    removeAnime: async (parent, { Id, userId }) => {
       const updateUserArr = await User.findOneAndUpdate(
         { _id: userId },
-        { $pull: { notes: Id } },
+        { $pull: { savedAnime: Id } },
         { new: true }
       );
       return updateUserArr;
-    },
-
-    updateNote: async (parent, { _id, text }) => {
-      return await Note.updateOne(
-        { _id: _id },
-        { $set: { text } },
-        { new: true }
-      );
     },
   },
 };

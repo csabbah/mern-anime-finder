@@ -1,15 +1,25 @@
 import React, { useState, useEffect } from "react";
+import { FaRegSave, FaSave } from "react-icons/fa";
 
-// import Auth from "../utils/auth";
+import { useMutation } from "@apollo/client";
+import { ADD_ANIME } from "../utils/mutations";
+
+import Auth from "../utils/auth";
 
 const Home = () => {
-  // // Check if user is logged in
-  // let loggedIn = Auth.loggedIn();
-  // console.log(`User is logged in: ${loggedIn}`);
+  let loggedIn = Auth.loggedIn();
 
-  // // If user is logged in, return their auth data (Their username, email and ID)
-  // let userData = Auth.getProfile();
-  // console.log("User data:", userData);
+  const [addAnime, { error }] = useMutation(ADD_ANIME);
+
+  const saveAnime = async (item) => {
+    try {
+      await addAnime({
+        variables: item,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   const [data, setData] = useState("");
   const [buttons, setButtons] = useState([]);
@@ -86,6 +96,11 @@ const Home = () => {
                 <option value="13">13</option>
                 <option value="14">14</option>
                 <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
               </select>
             </>
           )}
@@ -105,10 +120,10 @@ const Home = () => {
                   <img
                     className="image"
                     src={item.image}
-                    alt={item.alternativeTitles[0]}
+                    alt={item.title}
                   ></img>
                   <div className="card-wrapper">
-                    <h5>{item.alternativeTitles[0].slice(0, 25)}...</h5>
+                    <h5>{item.title.slice(0, 25)}...</h5>
                     <div className="genre-wrapper">
                       {item.genres.map((genre, i) => {
                         return (
@@ -137,7 +152,30 @@ const Home = () => {
                         </span>
                       </p>
                     </div>
-                    <a href={item.link}>Full Info</a>
+                    <div className="interaction-wrapper">
+                      {loggedIn ? (
+                        <FaRegSave
+                          onClick={() =>
+                            saveAnime({
+                              animeToSave: {
+                                userId: Auth.getProfile().data._id,
+                                genres: item.genres,
+                                image: item.image,
+                                link: item.link,
+                                ranking: item.ranking.toString(),
+                                title: item.title,
+                                episodes: item.episodes.toString(),
+                                status: item.status,
+                                synopsis: item.synopsis,
+                              },
+                            })
+                          }
+                          className="save-icon"
+                        />
+                      ) : (
+                        "Login/Signup to save Anime"
+                      )}
+                    </div>
                   </div>
                 </li>
               );

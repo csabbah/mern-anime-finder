@@ -24,30 +24,21 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_NOTE = gql`
-  mutation addNote($noteToSave: noteInput!) {
-    addNote(noteToSave: $noteToSave) {
+export const ADD_ANIME = gql`
+  mutation addAnime($animeToSave: animeInput) {
+    addAnime(animeToSave: $animeToSave) {
       _id
-      notes {
-        text
+      savedAnime {
+        title
       }
     }
   }
 `;
 
-export const REMOVE_NOTE = gql`
-  mutation removeNote($Id: String!, $userId: String!) {
-    removeNote(Id: $Id, userId: $userId) {
+export const REMOVE_ANIME = gql`
+  mutation removeAnime($Id: String!, $userId: String!) {
+    removeAnime(Id: $Id, userId: $userId) {
       username
-    }
-  }
-`;
-
-export const UPDATE_NOTE = gql`
-  mutation updateNote($_id: String!, $text: String!) {
-    updateNote(_id: $_id, text: $text) {
-      _id
-      text
     }
   }
 `;

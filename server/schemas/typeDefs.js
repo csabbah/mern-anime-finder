@@ -1,35 +1,47 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-  type Query {
-    me: User
-    notes: [Note]
-  }
-
-  type Note {
+  type savedAnime {
     _id: ID
-    text: String
     userId: String
+    title: String
+    episodes: String
+    genres: [String]
+    image: String
+    link: String
+    status: String
+    synopsis: String
+    ranking: String
   }
 
-  input noteInput {
-    text: String
+  input animeInput {
     userId: String
+    title: String
+    episodes: String
+    genres: [String]
+    image: String
+    link: String
+    status: String
+    synopsis: String
+    ranking: String
   }
 
   type User {
     _id: ID
     username: String
     email: String
-    notes: [Note]
+    savedAnime: [savedAnime]
   }
 
+  type Query {
+    me: User
+    savedAnime: [savedAnime]
+  }
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addNote(noteToSave: noteInput): User
-    removeNote(Id: String!, userId: String!): User
-    updateNote(_id: String!, text: String!): Note
+    addAnime(animeToSave: animeInput): User
+    removeAnime(Id: String!, userId: String!): User
   }
 
   type Auth {
