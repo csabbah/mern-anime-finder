@@ -54,21 +54,21 @@ const Home = () => {
 
   return (
     <div className="outer-wrapper">
-      <div className="search-controls">
+      <form onSubmit={(e) => e.preventDefault()} className="search-controls">
         <input
           className="inputData"
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Demon Slayer, MHA..."
         ></input>
         <div className="control-inner">
-          <button onClick={() => setSubmitted(true)}>Search</button>
+          <button type="submit" onClick={() => setSubmitted(true)}>
+            Search
+          </button>
           {data && data.data.length > 1 && (
             <>
               <button
                 onClick={() => {
-                  setData("");
-                  document.querySelector(".inputData").value = "";
-                  setShowMore([false, null]);
+                  window.location.reload(false);
                 }}
               >
                 Clear
@@ -90,7 +90,7 @@ const Home = () => {
             </>
           )}
         </div>
-      </div>
+      </form>
 
       <ul className="main-wrapper">
         {data

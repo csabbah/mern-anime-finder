@@ -129,7 +129,7 @@ select:-webkit-autofill:focus {
 }
 
 .main-wrapper {
-  padding-top: 20px;
+  padding-top: 25px;
   padding-bottom: 40px;
   padding-left: 15px;
   padding-right: 15px;
@@ -172,7 +172,7 @@ select:-webkit-autofill:focus {
   width: 90%;
   display: flex;
   justify-content: flex-start;
-  margin-left: 20px;
+  margin-left: 18px;
   flex-direction: column;
 }
 
@@ -273,7 +273,7 @@ select:-webkit-autofill:focus {
 }
 
 .pages-wrapper {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 .pages-wrapper button {
