@@ -10,6 +10,7 @@ import Auth from "../utils/auth";
 
 const SavedAnime = () => {
   const [removeAnme, { errorRemove }] = useMutation(REMOVE_ANIME);
+  const [showMore, setShowMore] = useState([false, null]);
 
   let userData = Auth.getProfile();
   // Execute useQuery method to return full user data (Using the extracted user _id above)
@@ -53,12 +54,52 @@ const SavedAnime = () => {
         <div className="wave -two"></div>
         <div className="wave -three"></div>
       </div>
-      {!loading &&
-        data.me.savedAnime.map((item) => {
-          <div className="saved-card">
-            <title>{item.title}</title>
-          </div>;
-        })}
+      <ul className="main-wrapper">
+        {!loading &&
+          data.me.savedAnime.map((item, i) => {
+            return (
+              <li
+                className={`card ${
+                  showMore[1] == i && showMore[0] ? "showDesc" : ""
+                }`}
+                key={i}
+              >
+                <img className="image" src={item.image} alt={item.title}></img>
+                <div className="card-wrapper">
+                  <h5>{item.title}</h5>
+                  <div className="genre-wrapper">
+                    {item.genres.map((genre, i) => {
+                      return (
+                        <p className={`genre-item ${genre}`} key={i}>
+                          {genre}
+                        </p>
+                      );
+                    })}
+                    <p>
+                      {item.synopsis.slice(
+                        0,
+                        showMore[1] == i && showMore[0] ? 350 : 50
+                      )}
+                      ...
+                      <span
+                        className="showMoreEl"
+                        onClick={() =>
+                          showMore[1] == i && showMore[0]
+                            ? setShowMore([false, i])
+                            : setShowMore([true, i])
+                        }
+                      >
+                        {showMore[1] == i && showMore[0]
+                          ? "Show Less"
+                          : "Show More"}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+      </ul>
     </div>
   );
 };

@@ -510,3 +510,10 @@ body {
     opacity: 0;
   }
 }
+
+@media screen and (max-width: 730px) {
+  button:hover,
+  .card:hover {
+    transform: scale(1);
+  }
+}
