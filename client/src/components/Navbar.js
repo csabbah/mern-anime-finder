@@ -11,7 +11,7 @@ const AppNavbar = () => {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <>
+    <div className="nav-wrapper">
       <Navbar bg="dark" variant="dark" expand="lg">
         <Container fluid>
           <Navbar.Brand as={Link} to="/">
@@ -70,7 +70,7 @@ const AppNavbar = () => {
           </Modal.Body>
         </Tab.Container>
       </Modal>
-    </>
+    </div>
   );
 };
 

@@ -64,6 +64,11 @@ const Home = () => {
 
   return (
     <div className="outer-wrapper">
+      <div class="box">
+        <div class="wave -one"></div>
+        <div class="wave -two"></div>
+        <div class="wave -three"></div>
+      </div>
       <form onSubmit={(e) => e.preventDefault()} className="search-controls">
         <input
           className="inputData"
