@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import About from "./pages/About";
+import SavedAnime from "./pages/SavedAnime";
 
 import { setContext } from "@apollo/client/link/context";
 
@@ -50,7 +50,9 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home} />
             {/* User can only access About route (page) IF they are logged in */}
-            {loggedIn && <Route exact path="/about" component={About} />}
+            {loggedIn && (
+              <Route exact path="/saved-anime" component={SavedAnime} />
+            )}
             <Route render={() => <h1 className="display-2">Wrong page!</h1>} />
           </Switch>
         </>

@@ -8,7 +8,7 @@ import { GET_ME } from "../utils/queries";
 
 import Auth from "../utils/auth";
 
-const About = () => {
+const SavedAnime = () => {
   const [removeAnme, { errorRemove }] = useMutation(REMOVE_ANIME);
 
   let userData = Auth.getProfile();
@@ -58,4 +58,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default SavedAnime;

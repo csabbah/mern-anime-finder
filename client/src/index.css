@@ -71,16 +71,15 @@ input {
   border: none;
   border-radius: 8px;
   color: #272522;
-  background-color: rgb(197, 210, 223);
+  background-color: rgb(255, 255, 255);
 }
 
 button {
   user-select: none;
   border: none;
-  padding: 4px 10px;
+  padding: 5px 10px;
   border-radius: 8px;
   color: black;
-  background-color: rgb(217, 245, 255);
   box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.1);
@@ -305,14 +304,16 @@ select:-webkit-autofill:focus {
 select {
   margin-left: 8px;
   width: 175px;
-  background-color: rgb(217, 245, 255);
   cursor: pointer;
   font-size: 18px;
   color: #444;
-  padding: 5px 12px;
+  padding: 3px 12px;
   border-radius: 5px;
-  border: none;
   appearance: none;
+  box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 .activePage {

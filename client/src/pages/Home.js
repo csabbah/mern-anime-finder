@@ -64,10 +64,10 @@ const Home = () => {
 
   return (
     <div className="outer-wrapper">
-      <div class="box">
-        <div class="wave -one"></div>
-        <div class="wave -two"></div>
-        <div class="wave -three"></div>
+      <div className="box">
+        <div className="wave -one"></div>
+        <div className="wave -two"></div>
+        <div className="wave -three"></div>
       </div>
       <form onSubmit={(e) => e.preventDefault()} className="search-controls">
         <input
@@ -186,6 +186,11 @@ const Home = () => {
               );
             })
           : ""}
+        {data && data.data.length < 1 ? (
+          <p style={{ color: "white" }}>No Data Found!</p>
+        ) : (
+          ""
+        )}
       </ul>
       <div className="pages-wrapper">
         {data && data.data.length > 1 && (
