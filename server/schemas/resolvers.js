@@ -46,7 +46,7 @@ const resolvers = {
     },
 
     addAnime: async (parent, { animeToSave }) => {
-      const anime = await savedAnime.create({ animeToSave });
+      const anime = await savedAnime.create(animeToSave);
       const updateUserArr = await User.findOneAndUpdate(
         { _id: animeToSave.userId },
         { $addToSet: { savedAnime: anime } },

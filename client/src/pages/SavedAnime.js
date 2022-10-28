@@ -48,12 +48,17 @@ const SavedAnime = () => {
 
   return (
     <div style={{ paddingLeft: "15px" }}>
-      About Page
-      {/* {!loading && (
-        <p style={{ marginTop: "25px" }}>
-          User credentials - Email: {data.me.email} Username: {data.me.username}
-        </p>
-      )} */}
+      <div className="box">
+        <div className="wave -one"></div>
+        <div className="wave -two"></div>
+        <div className="wave -three"></div>
+      </div>
+      {!loading &&
+        data.me.savedAnime.map((item) => {
+          <div className="saved-card">
+            <title>{item.title}</title>
+          </div>;
+        })}
     </div>
   );
 };
