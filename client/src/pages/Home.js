@@ -101,11 +101,6 @@ const Home = () => {
                 <option value="13">13</option>
                 <option value="14">14</option>
                 <option value="15">15</option>
-                <option value="16">16</option>
-                <option value="17">17</option>
-                <option value="18">18</option>
-                <option value="19">19</option>
-                <option value="20">20</option>
               </select>
             </>
           )}
@@ -159,25 +154,33 @@ const Home = () => {
                     </div>
                     <div className="interaction-wrapper">
                       {loggedIn ? (
-                        <FaRegSave
-                          onClick={() => {
-                            saveAnime({
-                              animeToSave: {
-                                dataId: item._id,
-                                userId: Auth.getProfile().data._id,
-                                genres: item.genres,
-                                image: item.image,
-                                link: item.link,
-                                ranking: item.ranking.toString(),
-                                title: item.title,
-                                episodes: item.episodes.toString(),
-                                status: item.status,
-                                synopsis: item.synopsis,
-                              },
-                            });
-                          }}
-                          className="save-icon"
-                        />
+                        <>
+                          <a
+                            style={{ marginRight: "10px" }}
+                            href={`/anime/${item._id}`}
+                          >
+                            View full Data
+                          </a>
+                          <FaRegSave
+                            onClick={() => {
+                              saveAnime({
+                                animeToSave: {
+                                  dataId: item._id,
+                                  userId: Auth.getProfile().data._id,
+                                  genres: item.genres,
+                                  image: item.image,
+                                  link: item.link,
+                                  ranking: item.ranking.toString(),
+                                  title: item.title,
+                                  episodes: item.episodes.toString(),
+                                  status: item.status,
+                                  synopsis: item.synopsis,
+                                },
+                              });
+                            }}
+                            className="save-icon"
+                          />
+                        </>
                       ) : (
                         <p style={{ textDecoration: "underline" }}>
                           Login/Signup to save Anime

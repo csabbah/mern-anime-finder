@@ -94,14 +94,7 @@ const SavedAnime = () => {
                           : "Show More"}
                       </span>
                     </p>
-                    <a href={`/anime/${item.dataId}`}>Full Data</a>
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Source
-                    </a>
+                    <a href={`/anime/${item.dataId}`}>View full Data</a>
                   </div>
                 </div>
               </li>
