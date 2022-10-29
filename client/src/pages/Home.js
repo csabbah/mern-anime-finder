@@ -160,9 +160,10 @@ const Home = () => {
                     <div className="interaction-wrapper">
                       {loggedIn ? (
                         <FaRegSave
-                          onClick={() =>
+                          onClick={() => {
                             saveAnime({
                               animeToSave: {
+                                dataId: item._id,
                                 userId: Auth.getProfile().data._id,
                                 genres: item.genres,
                                 image: item.image,
@@ -173,12 +174,14 @@ const Home = () => {
                                 status: item.status,
                                 synopsis: item.synopsis,
                               },
-                            })
-                          }
+                            });
+                          }}
                           className="save-icon"
                         />
                       ) : (
-                        "Login/Signup to save Anime"
+                        <p style={{ textDecoration: "underline" }}>
+                          Login/Signup to save Anime
+                        </p>
                       )}
                     </div>
                   </div>

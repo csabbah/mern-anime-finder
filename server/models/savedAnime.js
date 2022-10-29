@@ -2,6 +2,9 @@ const { Schema, model } = require("mongoose");
 
 const animeSchema = new Schema(
   {
+    dataId: {
+      type: String,
+    },
     title: {
       type: String,
     },

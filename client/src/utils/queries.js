@@ -8,6 +8,7 @@ export const GET_ME = gql`
       email
       savedAnime {
         _id
+        dataId
         genres
         image
         link
@@ -25,6 +26,7 @@ export const GET_ANIME = gql`
   {
     savedAnime {
       _id
+      dataId
       genres
       image
       link

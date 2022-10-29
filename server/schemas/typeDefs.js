@@ -3,6 +3,7 @@ const { gql } = require("apollo-server-express");
 const typeDefs = gql`
   type savedAnime {
     _id: ID
+    dataId: String
     userId: String
     title: String
     episodes: String
@@ -15,6 +16,7 @@ const typeDefs = gql`
   }
 
   input animeInput {
+    dataId: String
     userId: String
     title: String
     episodes: String

@@ -183,6 +183,11 @@ select:-webkit-autofill:focus {
   flex-direction: column;
 }
 
+.card-wrapper a {
+  font-size: 16px;
+  text-decoration: underline;
+}
+
 .card-wrapper h5 {
   font-size: 16px;
   font-weight: 700;
@@ -192,11 +197,6 @@ select:-webkit-autofill:focus {
 .showMoreEl {
   margin-left: 5px;
   cursor: pointer;
-  text-decoration: underline;
-}
-
-.card-wrapper a {
-  width: 65px;
   text-decoration: underline;
 }
 
