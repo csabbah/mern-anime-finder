@@ -149,10 +149,13 @@ select:-webkit-autofill:focus {
   border: none;
   width: 100%;
   max-width: 300px;
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 12px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
   overflow: hidden;
-  height: 400px;
+  height: 425px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(10px);
   transition: 0.2s all ease-in-out;
 }
 
@@ -179,6 +182,7 @@ select:-webkit-autofill:focus {
   width: 90%;
   display: flex;
   justify-content: flex-start;
+
   margin-left: 18px;
   flex-direction: column;
 }
@@ -282,13 +286,18 @@ select:-webkit-autofill:focus {
   margin-right: 5px;
 }
 
+.interaction-wrapper.not-logged {
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
 .save-icon {
   color: unset;
   cursor: pointer;
   font-size: 24px;
 }
 
-.save-icon:hover {
+.save-wrapper:hover {
   color: rgb(0, 119, 255);
 }
 .pages-wrapper {
@@ -324,7 +333,102 @@ select {
   cursor: not-allowed !important;
 }
 
+.single-anime-wrapper {
+  width: 100vw;
+  max-width: 1250px;
+  margin: auto;
+  padding: 50px;
+}
+
+.single-inner-wrapper {
+  position: relative;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.711);
+  border-radius: 10px;
+  padding: 10px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.single-anime-wrapper img {
+  border-radius: 5px;
+  border: 1px solid rgba(128, 128, 128, 0.457);
+  box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.single-anime-wrapper a {
+  text-decoration: underline;
+  font-size: 18px;
+}
+
+.back-btn {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  user-select: none;
+  text-decoration: none;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background-color: white;
+  color: black;
+  box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.single-inner-wrapper h1 {
+  margin-top: 10px;
+  font-size: 25px;
+}
+
+.single-line {
+  display: flex;
+  gap: 5px;
+}
+
+.group-data {
+  display: flex;
+  gap: 25px;
+}
+.single-line {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
 @media screen and (max-width: 730px) {
+  .back-btn {
+    position: absolute;
+    top: -55px;
+    right: 50%;
+    transform: translateX(50%);
+  }
+
+  .single-anime-wrapper {
+    text-align: center;
+    padding: 75px 15px;
+  }
+
+  .single-inner-wrapper {
+    padding: 20px;
+  }
+
+  .single-synopsis {
+    text-align: justify;
+  }
+
+  .group-data {
+    display: unset;
+  }
+  .single-line {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  p {
+    font-size: 15px;
+  }
+
   button:hover {
     transform: scale(1);
   }

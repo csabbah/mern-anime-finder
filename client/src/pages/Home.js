@@ -123,9 +123,12 @@ const Home = () => {
                     alt={item.title}
                   ></img>
                   <div className="card-wrapper">
-                    <h5>{item.title.slice(0, 25)}...</h5>
+                    <h5>{item.title}</h5>
                     <div className="genre-wrapper">
                       {item.genres.map((genre, i) => {
+                        if (i >= 3) {
+                          return "";
+                        }
                         return (
                           <p className={`genre-item ${genre}`} key={i}>
                             {genre}
@@ -152,15 +155,17 @@ const Home = () => {
                         </span>
                       </p>
                     </div>
-                    <div className="interaction-wrapper">
+                    <div
+                      className={`interaction-wrapper ${
+                        !loggedIn && "not-logged"
+                      }`}
+                    >
                       {loggedIn ? (
-                        <>
-                          <a
-                            style={{ marginRight: "10px" }}
-                            href={`/anime/${item._id}`}
-                          >
-                            View full Data
-                          </a>
+                        <div
+                          className="save-wrapper"
+                          style={{ display: "flex" }}
+                        >
+                          <span style={{ marginRight: "3px" }}>Save</span>
                           <FaRegSave
                             onClick={() => {
                               saveAnime({
@@ -180,12 +185,23 @@ const Home = () => {
                             }}
                             className="save-icon"
                           />
-                        </>
+                        </div>
                       ) : (
-                        <p style={{ textDecoration: "underline" }}>
-                          Login/Signup to save Anime
+                        <p
+                          style={{
+                            marginTop: "10px",
+                            textDecoration: "underline",
+                          }}
+                        >
+                          Login to save Anime
                         </p>
                       )}
+                      <a
+                        style={loggedIn ? { marginLeft: "15px" } : {}}
+                        href={`/anime/${item._id}`}
+                      >
+                        View full Data
+                      </a>
                     </div>
                   </div>
                 </li>

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
+import { Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const SingleAnime = () => {
   let { param } = useParams();
 
   const [data, setData] = useState("");
   useEffect(() => {
-    console.log(true);
     const options = {
       method: "GET",
       headers: {
@@ -24,27 +25,41 @@ const SingleAnime = () => {
 
   return (
     <div className="single-anime-wrapper">
-      {data && (
-        <div>
+      <div className="box">
+        <div className="wave -one"></div>
+        <div className="wave -two"></div>
+        <div className="wave -three"></div>
+      </div>
+      {data ? (
+        <div className="single-inner-wrapper">
+          <Nav.Link className="back-btn" as={Link} to="/">
+            Back
+          </Nav.Link>
           <img src={data.image} alt={data.title}></img>
           <h1>{data.title}</h1>
-          <div style={{ display: "flex", gap: "10px" }}>
-            <p>{data.status}</p>- Total Episodes: <p>{data.episodes}</p>
+          <div className="group-data">
+            <p>Status: {data.status}</p>
+            <p>Total Episodes: {data.episodes}</p>
+            <p>Ranking: #{data.ranking}</p>
           </div>
-          <p>Ranking: #{data.ranking}</p>
-          <div>
+          <p>
             Genres:
-            <span style={{ display: "flex", gap: "10px" }}>
+            <span className="single-line">
               {data.genres.map((genre, i) => (
-                <p key={i}>{genre}</p>
+                <span className={`genre-item ${genre}`} key={i}>
+                  {genre}
+                </span>
               ))}
             </span>
-          </div>
-          <p>{data.synopsis}</p>
+          </p>
+          <p style={{ marginBottom: "0px" }}>Synopsis:</p>
+          <p className="single-synopsis">{data.synopsis}</p>
           <a href={data.link} target="_blank" rel="noopener noreferrer">
-            View source
+            View Full source
           </a>
         </div>
+      ) : (
+        "Loading..."
       )}
     </div>
   );
