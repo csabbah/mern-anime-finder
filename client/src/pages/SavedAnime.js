@@ -104,6 +104,11 @@ const SavedAnime = () => {
               </li>
             );
           })}
+        {data && data.me.savedAnime.length == 0 ? (
+          <p style={{ color: "white" }}>No Data</p>
+        ) : (
+          ""
+        )}
       </ul>
     </div>
   );
