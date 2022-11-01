@@ -36,16 +36,16 @@ const SavedAnime = () => {
   }
 
   // ----------------------------- DELETE METHOD - Deleting a Note
-  // const deleteNote = async (id) => {
-  //   try {
-  //     await removeNote({
-  //       variables: { Id: id, userId: data.me._id },
-  //     });
-  //     window.location.reload(false);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
+  const deleteAnime = async (id) => {
+    try {
+      await removeAnme({
+        variables: { Id: id, userId: data.me._id },
+      });
+      window.location.reload(false);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <div style={{ paddingLeft: "15px" }}>
@@ -56,6 +56,7 @@ const SavedAnime = () => {
       </div>
       <ul className="main-wrapper">
         {!loading &&
+          data &&
           data.me.savedAnime.map((item, i) => {
             return (
               <li
@@ -95,6 +96,9 @@ const SavedAnime = () => {
                       </span>
                     </p>
                     <a href={`/anime/${item.dataId}`}>View full Data</a>
+                    <button onClick={() => deleteAnime(item._id)}>
+                      Delete
+                    </button>
                   </div>
                 </div>
               </li>
