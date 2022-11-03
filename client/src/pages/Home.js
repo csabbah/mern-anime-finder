@@ -111,6 +111,17 @@ const Home = () => {
       <ul className="main-wrapper">
         {data
           ? data.data.map((item, i) => {
+              const {
+                image,
+                title,
+                genres,
+                synopsis,
+                link,
+                _id,
+                ranking,
+                episodes,
+                status,
+              } = item;
               return (
                 <li
                   className={`card ${
@@ -118,15 +129,11 @@ const Home = () => {
                   }`}
                   key={i}
                 >
-                  <img
-                    className="image"
-                    src={item.image}
-                    alt={item.title}
-                  ></img>
+                  <img className="image" src={image} alt={title}></img>
                   <div className="card-wrapper">
-                    <h5>{item.title}</h5>
+                    <h5>{title}</h5>
                     <div className="genre-wrapper">
-                      {item.genres.map((genre, i) => {
+                      {genres.map((genre, i) => {
                         if (i >= 3) {
                           return "";
                         }
@@ -138,11 +145,11 @@ const Home = () => {
                       })}
                     </div>
                     <div className="desc-wrapper">
-                      {item.synopsis.length == 0 ? (
+                      {synopsis.length == 0 ? (
                         <span>No Description</span>
                       ) : (
                         <>
-                          {item.synopsis.slice(
+                          {synopsis.slice(
                             0,
                             showMore[1] == i && showMore[0] ? 350 : 50
                           )}
@@ -177,16 +184,16 @@ const Home = () => {
                             onClick={() => {
                               saveAnime({
                                 animeToSave: {
-                                  dataId: item._id,
+                                  dataId: _id,
                                   userId: Auth.getProfile().data._id,
-                                  genres: item.genres,
-                                  image: item.image,
-                                  link: item.link,
-                                  ranking: item.ranking.toString(),
-                                  title: item.title,
-                                  episodes: item.episodes.toString(),
-                                  status: item.status,
-                                  synopsis: item.synopsis,
+                                  genres: genres,
+                                  image: image,
+                                  link: link,
+                                  ranking: ranking.toString(),
+                                  title: title,
+                                  episodes: episodes.toString(),
+                                  status: status,
+                                  synopsis: synopsis,
                                 },
                               });
                             }}

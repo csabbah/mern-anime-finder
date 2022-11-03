@@ -108,25 +108,19 @@ const SingleAnime = () => {
       )}
       {recoData != "" && (
         <div className="single-secondary-inner-wrapper">
-          <h3 style={{ marginBottom: "20px" }}>You May also like:</h3>
+          <h3>You May also like:</h3>
           <div className="secondary-card-wrapper">
             {recoData.data.map((item, i) => {
+              const { title, thumb, ranking, _id } = item;
               return (
                 <div key={i}>
                   <div className="secondary-card">
-                    <img alt={item.title} src={item.thumb}></img>
-                    <div style={{ marginLeft: "10px" }}>
-                      <p style={{ marginBottom: "7px" }}>{item.title}</p>
-                      <p style={{ marginBottom: "7px" }}>
-                        Ranking: #{item.ranking}
-                      </p>
+                    <img alt={title} src={thumb}></img>
+                    <div>
+                      <p>{title}</p>
+                      <p>Ranking: #{ranking}</p>
 
-                      <a
-                        href={`/anime/${item._id}`}
-                        style={{ marginBottom: "7px" }}
-                      >
-                        Full Data
-                      </a>
+                      <a href={`/anime/${_id}`}>Full Data</a>
                     </div>
                   </div>
                   <hr></hr>
