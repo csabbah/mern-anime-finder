@@ -60,12 +60,16 @@ const SavedAnime = () => {
           data.me.savedAnime.map((item, i) => {
             return (
               <li
-                className={`card ${
+                className={`card saved ${
                   showMore[1] == i && showMore[0] ? "showDesc" : ""
                 }`}
                 key={i}
               >
-                <img className="image" src={item.image} alt={item.title}></img>
+                <img
+                  className="image saved"
+                  src={item.image}
+                  alt={item.title}
+                ></img>
                 <div className="card-wrapper">
                   <h5>{item.title}</h5>
                   <div className="genre-wrapper">
@@ -76,29 +80,19 @@ const SavedAnime = () => {
                         </p>
                       );
                     })}
-                    <p>
-                      {item.synopsis.slice(
-                        0,
-                        showMore[1] == i && showMore[0] ? 350 : 50
-                      )}
-                      ...
-                      <span
-                        className="showMoreEl"
-                        onClick={() =>
-                          showMore[1] == i && showMore[0]
-                            ? setShowMore([false, i])
-                            : setShowMore([true, i])
-                        }
+                    <div style={{ marginTop: "15px" }}>
+                      <button
+                        style={{
+                          marginRight: "10px",
+                          backgroundColor: "#cc4f4f",
+                          color: "white",
+                        }}
+                        onClick={() => deleteAnime(item._id)}
                       >
-                        {showMore[1] == i && showMore[0]
-                          ? "Show Less"
-                          : "Show More"}
-                      </span>
-                    </p>
-                    <a href={`/anime/${item.dataId}`}>View full Data</a>
-                    <button onClick={() => deleteAnime(item._id)}>
-                      Delete
-                    </button>
+                        Delete
+                      </button>
+                      <a href={`/anime/${item.dataId}`}>View full Data</a>
+                    </div>
                   </div>
                 </div>
               </li>

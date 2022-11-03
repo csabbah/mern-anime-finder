@@ -146,6 +146,27 @@ select:-webkit-autofill:focus {
   gap: 30px;
 }
 
+.notification {
+  position: fixed;
+  top: 30px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  font-size: 17px;
+  box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.4);
+  z-index: 200;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px 60px;
+  opacity: 0;
+  transition: 0.4s all ease-in-out;
+}
+
+.notification.active {
+  top: 45px;
+  z-index: 200;
+  opacity: 1;
+  transition: 0.4s all ease-in-out;
+}
+
 .card {
   border: none;
   width: 100%;
@@ -158,6 +179,10 @@ select:-webkit-autofill:focus {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(10px);
   transition: 0.2s all ease-in-out;
+}
+
+.card.saved {
+  height: 358px;
 }
 
 .card.showDesc {
@@ -179,6 +204,9 @@ select:-webkit-autofill:focus {
   padding: 15px;
 }
 
+.image.saved {
+  height: 225px;
+}
 .card-wrapper {
   width: 90%;
   display: flex;

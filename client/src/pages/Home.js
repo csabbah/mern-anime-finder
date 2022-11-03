@@ -11,6 +11,8 @@ const Home = () => {
 
   const [addAnime, { error }] = useMutation(ADD_ANIME);
 
+  const [notification, setNotification] = useState("");
+
   const saveAnime = async (item) => {
     try {
       await addAnime({
@@ -64,6 +66,10 @@ const Home = () => {
 
   return (
     <div className="outer-wrapper">
+      <h1 className={`notification ${notification ? "active" : ""}`}>
+        Anime added to profile!
+      </h1>
+
       <div className="box">
         <div className="wave -one"></div>
         <div className="wave -two"></div>
@@ -176,29 +182,32 @@ const Home = () => {
                     >
                       {loggedIn ? (
                         <div
-                          className="save-wrapper"
-                          style={{ display: "flex" }}
+                          onClick={() => {
+                            saveAnime({
+                              animeToSave: {
+                                dataId: _id,
+                                userId: Auth.getProfile().data._id,
+                                genres: genres,
+                                image: image,
+                                link: link,
+                                ranking: ranking.toString(),
+                                title: title,
+                                episodes: episodes.toString(),
+                                status: status,
+                                synopsis: synopsis,
+                              },
+                            });
+                            setNotification(true);
+                            document.querySelector(`.icon-${i}`).remove();
+                            setTimeout(() => {
+                              setNotification(false);
+                            }, 3000);
+                          }}
+                          className={`save-wrapper icon-${i}`}
+                          style={{ display: "flex", marginRight: "15px" }}
                         >
                           <span style={{ marginRight: "3px" }}>Save</span>
-                          <FaRegSave
-                            onClick={() => {
-                              saveAnime({
-                                animeToSave: {
-                                  dataId: _id,
-                                  userId: Auth.getProfile().data._id,
-                                  genres: genres,
-                                  image: image,
-                                  link: link,
-                                  ranking: ranking.toString(),
-                                  title: title,
-                                  episodes: episodes.toString(),
-                                  status: status,
-                                  synopsis: synopsis,
-                                },
-                              });
-                            }}
-                            className="save-icon"
-                          />
+                          <FaRegSave className="save-icon" />
                         </div>
                       ) : (
                         <p
@@ -211,12 +220,7 @@ const Home = () => {
                           Login to save Anime
                         </p>
                       )}
-                      <a
-                        style={loggedIn ? { marginLeft: "15px" } : {}}
-                        href={`/anime/${item._id}`}
-                      >
-                        View full Data
-                      </a>
+                      <a href={`/anime/${item._id}`}>View full data</a>
                     </div>
                   </div>
                 </li>
