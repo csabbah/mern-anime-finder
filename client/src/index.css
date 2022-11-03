@@ -341,10 +341,12 @@ select {
 }
 
 .single-anime-wrapper {
-  width: 100vw;
-  max-width: 1150px;
-  margin: auto;
-  padding: 50px;
+  margin-top: 40px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
 }
 
 .single-inner-wrapper {
@@ -352,10 +354,22 @@ select {
   z-index: 10;
   background-color: white;
   border-radius: 10px;
+  max-width: 900px;
+  width: 92vw;
   padding: 25px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(10px);
 }
+
+.single-secondary-inner-wrapper {
+  position: relative;
+  z-index: 11;
+  background-color: white;
+  border-radius: 10px;
+  max-width: 375px;
+  width: 92vw;
+  padding: 25px;
+  margin-bottom: 50px;
+}
+
 .single-anime-wrapper img {
   border-radius: 5px;
   border: 1px solid rgba(128, 128, 128, 0.457);
@@ -405,6 +419,14 @@ select {
 }
 
 @media screen and (max-width: 730px) {
+  .single-anime-wrapper {
+    margin-top: 0;
+  }
+
+  .single-secondary-inner-wrapper {
+    margin-bottom: 0;
+  }
+
   .back-btn {
     position: absolute;
     top: -58px;
