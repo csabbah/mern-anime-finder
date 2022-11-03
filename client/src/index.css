@@ -342,7 +342,7 @@ select {
 
 .single-anime-wrapper {
   width: 100vw;
-  max-width: 1250px;
+  max-width: 1150px;
   margin: auto;
   padding: 50px;
 }
@@ -350,9 +350,9 @@ select {
 .single-inner-wrapper {
   position: relative;
   z-index: 10;
-  background-color: rgba(255, 255, 255, 0.711);
+  background-color: white;
   border-radius: 10px;
-  padding: 10px;
+  padding: 25px;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(10px);
 }
@@ -376,8 +376,9 @@ select {
   border: none;
   padding: 5px 10px;
   border-radius: 8px;
-  background-color: white;
-  color: black;
+  text-decoration: none !important;
+  background-color: #777;
+  color: white;
   box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.1);
@@ -406,13 +407,15 @@ select {
 @media screen and (max-width: 730px) {
   .back-btn {
     position: absolute;
-    top: -55px;
+    top: -58px;
     right: 50%;
+    background-color: white;
+    color: black;
     transform: translateX(50%);
   }
 
   .single-anime-wrapper {
-    text-align: center;
+    text-align: left;
     padding: 75px 15px;
   }
 
@@ -428,7 +431,6 @@ select {
     display: unset;
   }
   .single-line {
-    justify-content: center;
     flex-wrap: wrap;
   }
 

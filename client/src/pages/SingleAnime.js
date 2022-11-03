@@ -59,7 +59,7 @@ const SingleAnime = () => {
           </a>
         </div>
       ) : (
-        "Loading..."
+        <p style={{ color: "white" }}>Loading...</p>
       )}
     </div>
   );
