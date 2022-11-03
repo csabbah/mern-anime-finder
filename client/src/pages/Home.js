@@ -91,6 +91,7 @@ const Home = () => {
               <select
                 onChange={(e) => {
                   setDataPerPage(e.target.value);
+                  setActivePage(1);
                   setSubmitted(true);
                 }}
                 id="dropdown"
@@ -135,25 +136,31 @@ const Home = () => {
                           </p>
                         );
                       })}
-                      <p>
-                        {item.synopsis.slice(
-                          0,
-                          showMore[1] == i && showMore[0] ? 350 : 50
-                        )}
-                        ...
-                        <span
-                          className="showMoreEl"
-                          onClick={() =>
-                            showMore[1] == i && showMore[0]
-                              ? setShowMore([false, i])
-                              : setShowMore([true, i])
-                          }
-                        >
-                          {showMore[1] == i && showMore[0]
-                            ? "Show Less"
-                            : "Show More"}
-                        </span>
-                      </p>
+                    </div>
+                    <div className="desc-wrapper">
+                      {item.synopsis.length == 0 ? (
+                        <span>No Description</span>
+                      ) : (
+                        <>
+                          {item.synopsis.slice(
+                            0,
+                            showMore[1] == i && showMore[0] ? 350 : 50
+                          )}
+                          ...
+                          <span
+                            className="showMoreEl"
+                            onClick={() =>
+                              showMore[1] == i && showMore[0]
+                                ? setShowMore([false, i])
+                                : setShowMore([true, i])
+                            }
+                          >
+                            {showMore[1] == i && showMore[0]
+                              ? "Show Less"
+                              : "Show More"}
+                          </span>
+                        </>
+                      )}
                     </div>
                     <div
                       className={`interaction-wrapper ${
@@ -190,6 +197,7 @@ const Home = () => {
                         <p
                           style={{
                             marginTop: "10px",
+                            marginBottom: "8px",
                             textDecoration: "underline",
                           }}
                         >

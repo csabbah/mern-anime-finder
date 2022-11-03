@@ -145,15 +145,16 @@ select:-webkit-autofill:focus {
   align-items: flex-start;
   gap: 30px;
 }
+
 .card {
   border: none;
   width: 100%;
   max-width: 300px;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 12px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  height: 425px;
+  height: 435px;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(10px);
   transition: 0.2s all ease-in-out;
@@ -275,6 +276,12 @@ select:-webkit-autofill:focus {
 
 .Ecchi {
   background-color: rgb(248, 217, 177);
+}
+
+.desc-wrapper {
+  margin-top: 15px;
+  margin-bottom: 0;
+  font-size: 13px;
 }
 
 .interaction-wrapper {
