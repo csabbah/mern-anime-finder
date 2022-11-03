@@ -8,7 +8,10 @@ const SingleAnime = () => {
   let { param } = useParams();
 
   const [data, setData] = useState("");
+  const [recoData, setRecoData] = useState("");
+
   useEffect(() => {
+    // Execute the fetch for the current anime on page (based on endpoint param)
     const options = {
       method: "GET",
       headers: {
@@ -19,7 +22,31 @@ const SingleAnime = () => {
 
     fetch(`https://anime-db.p.rapidapi.com/anime/by-id/${param}`, options)
       .then((response) => response.json())
-      .then((response) => setData(response))
+      .then((response) => {
+        // Set the main data to the state object
+        setData(response);
+        // Then return random data based on the above data genre
+        const randomGenre = Math.ceil(
+          Math.random() * response.genres.length - 1
+        );
+        const options2 = {
+          method: "GET",
+          headers: {
+            "X-RapidAPI-Key":
+              "ffae5646afmshec63d61fbd07b2fp17ee73jsn3371d91d22c0",
+            "X-RapidAPI-Host": "anime-db.p.rapidapi.com",
+          },
+        };
+        fetch(
+          `https://anime-db.p.rapidapi.com/anime?page=1&size=10&genres=${response.genres[randomGenre]}&sortBy=ranking&sortOrder=asc`,
+          options2
+        )
+          .then((response2) => response2.json())
+          .then((response2) => {
+            setRecoData(response2);
+          })
+          .catch((err) => console.error(err));
+      })
       .catch((err) => console.error(err));
   }, []);
 
@@ -68,76 +95,47 @@ const SingleAnime = () => {
             </a>
           </div>
         ) : (
-          <p style={{ color: "white" }}>Loading...</p>
+          <p style={{ color: "white", position: "relative", zIndex: "11" }}>
+            Loading...
+          </p>
         )}
       </div>
-      <div className="single-secondary-inner-wrapper">
-        <h3 style={{ marginBottom: "20px" }}>You May also like</h3>
-        <div className="secondary-card-wrapper">
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              borderRadius: "10px",
-            }}
-          >
-            <img style={{ width: "75px" }} src={data.thumb}></img>
-            <div style={{ marginLeft: "10px" }}>
-              <p style={{ marginBottom: "7px" }}>Title of Anime</p>
-              <p style={{ marginBottom: "7px" }}>Other Info</p>
-              <p style={{ marginBottom: "7px" }}>Link to page</p>
-            </div>
-          </div>
-          <hr></hr>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginTop: "15px",
-              borderRadius: "10px",
-            }}
-          >
-            <img style={{ width: "75px" }} src={data.thumb}></img>
-            <div style={{ marginLeft: "10px" }}>
-              <p style={{ marginBottom: "7px" }}>Title of Anime</p>
-              <p style={{ marginBottom: "7px" }}>Other Info</p>
-              <p style={{ marginBottom: "7px" }}>Link to page</p>
-            </div>
-          </div>
-          <hr></hr>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginTop: "15px",
-              borderRadius: "10px",
-            }}
-          >
-            <img style={{ width: "75px" }} src={data.thumb}></img>
-            <div style={{ marginLeft: "10px" }}>
-              <p style={{ marginBottom: "7px" }}>Title of Anime</p>
-              <p style={{ marginBottom: "7px" }}>Other Info</p>
-              <p style={{ marginBottom: "7px" }}>Link to page</p>
-            </div>
-          </div>
-          <hr></hr>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginTop: "15px",
-              borderRadius: "10px",
-            }}
-          >
-            <img style={{ width: "75px" }} src={data.thumb}></img>
-            <div style={{ marginLeft: "10px" }}>
-              <p style={{ marginBottom: "7px" }}>Title of Anime</p>
-              <p style={{ marginBottom: "7px" }}>Link to page</p>
-              <p style={{ marginBottom: "7px" }}>Link to page</p>
-            </div>
+
+      {data && recoData == "" && (
+        <p style={{ color: "white", position: "relative", zIndex: "11" }}>
+          Loading recommended anime...
+        </p>
+      )}
+      {recoData != "" && (
+        <div className="single-secondary-inner-wrapper">
+          <h3 style={{ marginBottom: "20px" }}>You May also like:</h3>
+          <div className="secondary-card-wrapper">
+            {recoData.data.map((item, i) => {
+              return (
+                <div key={i}>
+                  <div className="secondary-card">
+                    <img alt={item.title} src={item.thumb}></img>
+                    <div style={{ marginLeft: "10px" }}>
+                      <p style={{ marginBottom: "7px" }}>{item.title}</p>
+                      <p style={{ marginBottom: "7px" }}>
+                        Ranking: #{item.ranking}
+                      </p>
+
+                      <a
+                        href={`/anime/${item._id}`}
+                        style={{ marginBottom: "7px" }}
+                      >
+                        Full Data
+                      </a>
+                    </div>
+                  </div>
+                  <hr></hr>
+                </div>
+              );
+            })}
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
