@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Form, Button, Alert } from "react-bootstrap";
 
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 
-import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations';
+import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../utils/mutations";
 
 const SignupForm = () => {
   const [validated] = useState(false);
@@ -12,9 +12,9 @@ const SignupForm = () => {
   const [showAlert, setShowAlert] = useState(false);
 
   const [formState, setFormState] = useState({
-    username: '',
-    email: '',
-    password: '',
+    username: "",
+    email: "",
+    password: "",
   });
 
   const handleChange = (event) => {
@@ -37,7 +37,6 @@ const SignupForm = () => {
       const { data } = await addUser({
         variables: { ...formState },
       });
-      console.log(data);
       Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
@@ -111,7 +110,11 @@ const SignupForm = () => {
         >
           Submit
         </Button>
-        {error && <div>Sign up failed</div>}
+        {error && (
+          <div style={{ marginTop: "10px" }}>
+            Sign up failed - Email or Username already exists
+          </div>
+        )}
       </Form>
     </>
   );

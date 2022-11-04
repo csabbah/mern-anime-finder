@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { FaRegSave, FaSave } from "react-icons/fa";
+import { FaRegSave } from "react-icons/fa";
 
 import { useMutation } from "@apollo/client";
 import { ADD_ANIME } from "../utils/mutations";
+
+import { useQuery } from "@apollo/client";
+import { GET_ME } from "../utils/queries";
 
 import Auth from "../utils/auth";
 
@@ -10,16 +13,57 @@ const Home = () => {
   let loggedIn = Auth.loggedIn();
 
   const [addAnime, { error }] = useMutation(ADD_ANIME);
+  const [notification, setNotification] = useState([false, ""]);
 
-  const [notification, setNotification] = useState("");
+  // Extract the users saved anime data and push it to a global variable
+  let userSavedAnime = [];
+  const ExtractSavedAnime = (userId) => {
+    const { loading, data } = useQuery(GET_ME, {
+      variables: { id: userId },
+    });
+
+    if (!loading) {
+      data.me.savedAnime.forEach((anime) => {
+        userSavedAnime.push(anime);
+      });
+    }
+  };
+
+  // If user is logged in, execute above function using the users ID
+  if (loggedIn) {
+    let userData = Auth.getProfile();
+    ExtractSavedAnime(userData.data._id);
+  }
+
+  // Check users saved anime against the one they are currently trying to save
+  const checkAnime = (chosenItem) => {
+    let isAlreadySaved = false;
+    userSavedAnime.forEach((anime) => {
+      if (anime.dataId == chosenItem.animeToSave.dataId) {
+        isAlreadySaved = true;
+      }
+    });
+    return isAlreadySaved;
+  };
 
   const saveAnime = async (item) => {
-    try {
-      await addAnime({
-        variables: item,
-      });
-    } catch (e) {
-      console.log(e);
+    if (checkAnime(item)) {
+      setNotification([true, "Anime already saved!"]);
+      setTimeout(() => {
+        setNotification([false, "Anime already saved!"]);
+      }, 3000);
+    } else {
+      try {
+        await addAnime({
+          variables: item,
+        });
+        setNotification([true, "Anime added to profile!"]);
+        setTimeout(() => {
+          setNotification([false, "Anime added to profile!"]);
+        }, 3000);
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
 
@@ -49,6 +93,7 @@ const Home = () => {
       .then((response) => response.json())
       .then((response) => {
         setData(response);
+        // Convert buttons into an array based on value, i.e., if value is '3', create '[0,1,2]'
         setButtons(Array.from(Array(response.meta.totalPage).keys()));
       })
       .catch((err) => console.error(err));
@@ -66,8 +111,8 @@ const Home = () => {
 
   return (
     <div className="outer-wrapper">
-      <h1 className={`notification ${notification ? "active" : ""}`}>
-        Anime added to profile!
+      <h1 className={`notification ${notification[0] ? "active" : ""}`}>
+        {notification[1]}
       </h1>
 
       <div className="box">
@@ -197,11 +242,7 @@ const Home = () => {
                                 synopsis: synopsis,
                               },
                             });
-                            setNotification(true);
                             document.querySelector(`.icon-${i}`).remove();
-                            setTimeout(() => {
-                              setNotification(false);
-                            }, 3000);
                           }}
                           className={`save-wrapper icon-${i}`}
                           style={{ display: "flex", marginRight: "15px" }}
