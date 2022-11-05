@@ -288,7 +288,7 @@ const Home = () => {
         {data &&
           data.data.length > 1 &&
           buttons.map((pageNum, i) => {
-            if (i < 10) {
+            if (i < 15) {
               return (
                 <button
                   className={`${activePage === i + 1 ? "activePage" : ""}`}
