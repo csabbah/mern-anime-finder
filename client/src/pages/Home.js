@@ -12,7 +12,7 @@ import Auth from "../utils/auth";
 const Home = () => {
   let loggedIn = Auth.loggedIn();
 
-  const [addAnime, { error }] = useMutation(ADD_ANIME);
+  const [addAnime] = useMutation(ADD_ANIME);
   const [notification, setNotification] = useState([false, ""]);
 
   // Extract the users saved anime data and push it to a global variable
@@ -39,7 +39,7 @@ const Home = () => {
   const checkAnime = (chosenItem) => {
     let isAlreadySaved = false;
     userSavedAnime.forEach((anime) => {
-      if (anime.dataId == chosenItem.animeToSave.dataId) {
+      if (anime.dataId === chosenItem.animeToSave.dataId) {
         isAlreadySaved = true;
       }
     });
@@ -175,7 +175,7 @@ const Home = () => {
               return (
                 <li
                   className={`card ${
-                    showMore[1] == i && showMore[0] ? "showDesc" : ""
+                    showMore[1] === i && showMore[0] ? "showDesc" : ""
                   }`}
                   key={i}
                 >
@@ -195,24 +195,24 @@ const Home = () => {
                       })}
                     </div>
                     <div className="desc-wrapper">
-                      {synopsis.length == 0 ? (
+                      {synopsis.length === 0 ? (
                         <span>No Description</span>
                       ) : (
                         <>
                           {synopsis.slice(
                             0,
-                            showMore[1] == i && showMore[0] ? 350 : 50
+                            showMore[1] === i && showMore[0] ? 350 : 50
                           )}
                           ...
                           <span
                             className="showMoreEl"
                             onClick={() =>
-                              showMore[1] == i && showMore[0]
+                              showMore[1] === i && showMore[0]
                                 ? setShowMore([false, i])
                                 : setShowMore([true, i])
                             }
                           >
-                            {showMore[1] == i && showMore[0]
+                            {showMore[1] === i && showMore[0]
                               ? "Show Less"
                               : "Show More"}
                           </span>
@@ -280,7 +280,7 @@ const Home = () => {
               setActivePage(activePage - 1);
               setSubmitted(true);
             }}
-            className={`${activePage == 1 ? "activePage" : ""}`}
+            className={`${activePage === 1 ? "activePage" : ""}`}
           >
             {"<"}
           </button>
@@ -291,7 +291,7 @@ const Home = () => {
             if (i < 10) {
               return (
                 <button
-                  className={`${activePage == i + 1 ? "activePage" : ""}`}
+                  className={`${activePage === i + 1 ? "activePage" : ""}`}
                   onClick={() => {
                     setActivePage(i + 1);
                     setSubmitted(true);
@@ -302,6 +302,7 @@ const Home = () => {
                 </button>
               );
             }
+            return "";
           })}
         {data && data.data.length > 1 && (
           <button
@@ -309,7 +310,7 @@ const Home = () => {
               setActivePage(activePage + 1);
               setSubmitted(true);
             }}
-            className={`${activePage == buttons.length ? "activePage" : ""}`}
+            className={`${activePage === buttons.length ? "activePage" : ""}`}
           >
             {">"}
           </button>
