@@ -77,7 +77,6 @@ const Home = () => {
 
   const searchAnime = () => {
     setShowMore([false, null]);
-
     const options = {
       method: "GET",
       headers: {
@@ -289,18 +288,20 @@ const Home = () => {
         {data &&
           data.data.length > 1 &&
           buttons.map((pageNum, i) => {
-            return (
-              <button
-                className={`${activePage == i + 1 ? "activePage" : ""}`}
-                onClick={() => {
-                  setActivePage(i + 1);
-                  setSubmitted(true);
-                }}
-                key={i + 1}
-              >
-                {pageNum + 1}
-              </button>
-            );
+            if (i < 10) {
+              return (
+                <button
+                  className={`${activePage == i + 1 ? "activePage" : ""}`}
+                  onClick={() => {
+                    setActivePage(i + 1);
+                    setSubmitted(true);
+                  }}
+                  key={i + 1}
+                >
+                  {pageNum + 1}
+                </button>
+              );
+            }
           })}
         {data && data.data.length > 1 && (
           <button

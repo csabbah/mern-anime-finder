@@ -63,6 +63,7 @@ textarea::placeholder {
 }
 
 input {
+  margin: auto;
   height: 38px;
   font-size: 18px;
   resize: none;
@@ -121,10 +122,6 @@ select:-webkit-autofill:focus {
   margin-top: 25px;
   margin-left: 20px;
   gap: 10px;
-}
-
-.control-inner button:first-child {
-  margin-right: 10px;
 }
 
 .outer-wrapper {
@@ -336,11 +333,15 @@ select:-webkit-autofill:focus {
   color: rgb(0, 119, 255);
 }
 .pages-wrapper {
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  z-index: 111;
+  gap: 10px;
   margin-bottom: 40px;
-}
-
-.pages-wrapper button {
-  margin-right: 8px;
 }
 
 .pages-wrapper button:last-child {
@@ -348,7 +349,6 @@ select:-webkit-autofill:focus {
 }
 
 select {
-  margin-left: 8px;
   width: 175px;
   cursor: pointer;
   font-size: 18px;
@@ -477,6 +477,13 @@ select {
   margin-bottom: 10px;
 }
 
+.control-inner {
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 @media screen and (max-width: 730px) {
   .single-anime-wrapper {
     margin-top: 0;
@@ -531,7 +538,7 @@ select {
 
 @media screen and (max-width: 468px) {
   input {
-    width: 90vw;
+    width: 92vw;
   }
 
   .search-controls {
