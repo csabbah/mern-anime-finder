@@ -375,6 +375,7 @@ select {
   justify-content: center;
   flex-wrap: wrap;
   gap: 25px;
+  margin-bottom: 40px;
 }
 
 .single-inner-wrapper {
@@ -497,6 +498,7 @@ select {
   .single-anime-wrapper {
     text-align: left;
     padding: 75px 15px;
+    margin-bottom: 0;
   }
 
   .single-inner-wrapper {

@@ -111,9 +111,9 @@ const Home = () => {
 
   return (
     <div className="outer-wrapper">
-      <h1 className={`notification ${notification[0] ? "active" : ""}`}>
+      <h5 className={`notification ${notification[0] ? "active" : ""}`}>
         {notification[1]}
-      </h1>
+      </h5>
 
       <div className="box">
         <div className="wave -one"></div>
