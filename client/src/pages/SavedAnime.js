@@ -13,7 +13,6 @@ const SavedAnime = () => {
   const [showMore, setShowMore] = useState([false, null]);
 
   let userData = Auth.getProfile();
-  // Execute useQuery method to return full user data (Using the extracted user _id above)
   const { loading, data } = useQuery(GET_ME, {
     variables: { id: userData.data._id },
   });
