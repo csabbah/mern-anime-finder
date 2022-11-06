@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
 });
 
 // For simplicity we can just do this too (if you don't want to create the env file yet)
