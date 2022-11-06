@@ -5,6 +5,8 @@ require("dotenv").config({ path: "./.env" });
 const { ApolloServer } = require("apollo-server-express");
 const { authMiddleware } = require("./utils/auth");
 
+const cors = require("cors");
+
 // import our typeDefs and resolvers
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
@@ -20,6 +22,8 @@ const server = new ApolloServer({
 });
 
 const app = express();
+
+app.use(cors({ credentials: true }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
