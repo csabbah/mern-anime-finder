@@ -55,7 +55,7 @@ function App() {
             {loggedIn && (
               <Route exact path="/saved-anime" component={SavedAnime} />
             )}
-            <Route render={() => <h1 className="display-2">Wrong page!</h1>} />
+            {/* <Route render={() => <h1 className="display-2">Wrong page!</h1>} /> */}
           </Switch>
         </>
       </Router>
