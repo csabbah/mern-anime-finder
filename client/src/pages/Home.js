@@ -244,7 +244,12 @@ const Home = () => {
                             document.querySelector(`.icon-${i}`).remove();
                           }}
                           className={`save-wrapper icon-${i}`}
-                          style={{ display: "flex", marginRight: "15px" }}
+                          style={{
+                            display: "flex",
+                            marginRight: "15px",
+                            cursor: "pointer",
+                            userSelect: "none",
+                          }}
                         >
                           <span style={{ marginRight: "3px" }}>Save</span>
                           <FaRegSave className="save-icon" />

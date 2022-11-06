@@ -9,7 +9,7 @@ import { GET_ME } from "../utils/queries";
 import Auth from "../utils/auth";
 
 const SavedAnime = () => {
-  const [removeAnme, { errorRemove }] = useMutation(REMOVE_ANIME);
+  const [removeAnime] = useMutation(REMOVE_ANIME);
   const [showMore, setShowMore] = useState([false, null]);
 
   let userData = Auth.getProfile();
@@ -18,27 +18,10 @@ const SavedAnime = () => {
     variables: { id: userData.data._id },
   });
 
-  // Execute this upon first page load return user information
-  useEffect(() => {
-    // Check if user is logged in
-    let loggedIn = Auth.loggedIn();
-
-    // If user is logged in, return their data and add it to the note state object
-    if (loggedIn) {
-      let userData = Auth.getProfile();
-    }
-  }, []);
-
-  // Wait until data fully loads up
-  if (!loading) {
-    // Main User Data (Full Data)
-    console.log(data);
-  }
-
   // ----------------------------- DELETE METHOD - Deleting a Note
   const deleteAnime = async (id) => {
     try {
-      await removeAnme({
+      await removeAnime({
         variables: { Id: id, userId: data.me._id },
       });
       window.location.reload(false);
@@ -80,19 +63,19 @@ const SavedAnime = () => {
                         </p>
                       );
                     })}
-                    <div style={{ marginTop: "15px" }}>
-                      <button
-                        style={{
-                          marginRight: "10px",
-                          backgroundColor: "#cc4f4f",
-                          color: "white",
-                        }}
-                        onClick={() => deleteAnime(item._id)}
-                      >
-                        Delete
-                      </button>
-                      <a href={`/anime/${item.dataId}`}>View full Data</a>
-                    </div>
+                  </div>
+                  <div style={{ marginTop: "15px" }}>
+                    <button
+                      style={{
+                        marginRight: "10px",
+                        backgroundColor: "#cc4f4f",
+                        color: "white",
+                      }}
+                      onClick={() => deleteAnime(item._id)}
+                    >
+                      Delete
+                    </button>
+                    <a href={`/anime/${item.dataId}`}>View full Data</a>
                   </div>
                 </div>
               </li>
