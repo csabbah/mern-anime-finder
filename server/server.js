@@ -14,6 +14,8 @@ const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  playground: true,
+  introspection: true,
   context: authMiddleware,
 });
 
@@ -22,12 +24,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 const path = require("path");
+
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
 
   // integrate our Apollo server with the Express application as middleware
-  server.applyMiddleware({ app });
+  server.applyMiddleware({ path: "/graphql", app });
 
   // Serve up static assets
   if (process.env.NODE_ENV === "production") {
