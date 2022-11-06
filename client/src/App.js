@@ -16,7 +16,7 @@ import {
 } from "@apollo/client";
 
 const httpLink = createHttpLink({
-  uri: "/graphql",
+  uri: "https://mern-anime-finder.vercel.app/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
