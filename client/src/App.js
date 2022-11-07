@@ -18,7 +18,7 @@ import {
 import { server } from "./utils/config";
 
 const httpLink = createHttpLink({
-  uri: `${server}/graphql`,
+  uri: `/graphql`,
 });
 
 const authLink = setContext((_, { headers }) => {
