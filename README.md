@@ -15,7 +15,7 @@
 
 ## Description
 
-This MERN stack application is a multi page book search engine that allows users to search up books, view their detailed information and save them (which they can view in the saved books page). Using Apollo Client, MongoDB and Mongoose, all transactions made are stored accordingly with high level authentication via tokens and JTW-decode to allow for secure access and unique data specific to each users.
+This MERN stack application allows users to save, search up and view recommended Anime shows using data fetch via Anime DB API (https://rapidapi.com/brian.rofiq/api/anime-db/). Deployed to Vercel server and using Apollo Client, MongoDB and Mongoose, all transactions made are stored with high level authentication via tokens and JTW-decode to allow for secure access and unique data specific to each users.
 
 ## Installation
 
@@ -34,7 +34,13 @@ npm install
 
 ## Local-Usage
 
-To view the application in your local browser, cd into the root directory path and run this in terminal:
+Create an '.env' file at the root directory, add 'MONGODB_URI=' followed by a valid MongoDB link via MongoAtlas. Then at the root path, run:
+
+```
+npm install
+```
+
+After all dependencies are installed, run this command:
 
 ```
 npm run develop
@@ -42,7 +48,7 @@ npm run develop
 
 ## Links
 
-[Link to live application](https://boiling-hamlet-57856.herokuapp.com/)
+[Link to live application](https://mern-anime-finder.vercel.app/)
 
 ## Built With
 
@@ -76,6 +82,3 @@ If you have questions about this application or general inquiry, please reach ou
 ## License
 
 This project is covered under the MIT License.
-
-<img width="1640" alt="Previe" src="https://user-images.githubusercontent.com/91699101/178625203-986006e4-2c55-4518-963d-64d21ca73488.png">
-

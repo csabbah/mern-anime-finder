@@ -30,12 +30,21 @@ const SavedAnime = () => {
   };
 
   return (
-    <div style={{ paddingLeft: "15px" }}>
+    <div className="main-save-wrapper">
       <div className="box">
         <div className="wave -one"></div>
         <div className="wave -two"></div>
         <div className="wave -three"></div>
       </div>
+      <h3
+        style={{
+          color: "white",
+          marginTop: "15px",
+          marginBottom: "0",
+        }}
+      >
+        Your saved Anime
+      </h3>
       <ul className="main-wrapper">
         {!loading &&
           data &&
@@ -81,7 +90,7 @@ const SavedAnime = () => {
             );
           })}
         {data && data.me.savedAnime.length == 0 ? (
-          <p style={{ color: "white" }}>No Data</p>
+          <p style={{ color: "white" }}>No Anime saved</p>
         ) : (
           ""
         )}
