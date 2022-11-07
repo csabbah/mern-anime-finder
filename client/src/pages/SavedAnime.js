@@ -90,7 +90,7 @@ const SavedAnime = () => {
             );
           })}
         {data && data.me.savedAnime.length == 0 ? (
-          <p style={{ color: "white" }}>No Anime saved</p>
+          <p style={{ color: "white" }}>No data saved</p>
         ) : (
           ""
         )}
