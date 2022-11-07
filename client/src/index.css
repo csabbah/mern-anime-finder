@@ -49,8 +49,6 @@ input,
 input::placeholder,
 textarea::placeholder {
   color: black;
-  position: relative;
-  z-index: 111;
 }
 
 h1 {
@@ -123,6 +121,7 @@ select:-webkit-autofill:focus {
   z-index: 11;
   display: flex;
   margin-top: 25px;
+  margin-left: 20px;
   gap: 10px;
 }
 
