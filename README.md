@@ -1,4 +1,4 @@
-# mern-book-search - July 12th 2022 - Carlos Sabbah
+# mern-anime-finder - Nov 7th 2022 - Carlos Sabbah
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -53,9 +53,12 @@ npm run develop
 ## Built With
 
 - React
+- RapidAPI
 - Apollo Client
 - GraphQL
 - Json web token
+- Bcrypt
+- Dotenv
 - Jwt-decode
 - MongoDB
 - Mongoose
@@ -63,7 +66,6 @@ npm run develop
 - Bootstrap
 - Express
 - Node.js
-- Bcrypt
 - Faker
 - localStorage
 - JSX / JavaScript
