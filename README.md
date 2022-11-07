@@ -15,7 +15,7 @@
 
 ## Description
 
-This MERN stack application allows users to save, search up and view recommended Anime shows using data fetch via Anime DB API (https://rapidapi.com/brian.rofiq/api/anime-db/). Deployed to Vercel server and using Apollo Client, MongoDB and Mongoose, all transactions made are stored with high level authentication via tokens and JTW-decode to allow for secure access and unique data specific to each users.
+This MERN stack application allows users to login/sign-up, save, search up and view recommended Anime shows using data fetch via Anime DB API (https://rapidapi.com/brian.rofiq/api/anime-db/). Deployed to Vercel server and using Apollo Client, MongoDB and Mongoose, all transactions made are stored with high level authentication via tokens and JTW-decode to allow for secure access and unique data specific to each users.
 
 ## Installation
 
@@ -25,8 +25,7 @@ This MERN stack application allows users to save, search up and view recommended
 git clone
 ```
 
-2. Once cloned, open the project folder in your text editor and run the following command in terminal to install all dependencies.
-   Important note - You will need to run the below command in the 'root', 'client' and 'server' directory paths.
+2. Once cloned, open the project folder in your text editor and run the following command at the root directory in terminal to install all dependencies.
 
 ```
 npm install
@@ -35,12 +34,6 @@ npm install
 ## Local-Usage
 
 Create an '.env' file at the root directory, add 'MONGODB_URI=' followed by a valid MongoDB link via MongoAtlas. Then at the root path, run:
-
-```
-npm install
-```
-
-After all dependencies are installed, run this command:
 
 ```
 npm run develop
