@@ -41,7 +41,7 @@ npm run develop
 
 ## Links
 
-[Link to live application](https://mern-anime-finder.vercel.app/)
+[Link to live application](https://cs-anime-finder.vercel.app/)
 
 ## Built With
 
